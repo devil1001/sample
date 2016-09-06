@@ -1,3 +1,4 @@
+
 let express = require('express');
 let technologger = require('technologger');
 let parser = require('body-parser');
@@ -8,9 +9,9 @@ app.use('/', express.static('public'));
 app.use(parser.json());
 app.use(technologger);
 
-app.post('/users', (req, res, body) => {
-    console.log(body);
-    res.send('0');
+app.post('/users', (req, res) => {
+    console.log(req.body);
+    res.send('100');
     // TODO: вернуть количество обращений
 });
 
