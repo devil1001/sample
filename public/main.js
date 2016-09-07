@@ -2,6 +2,10 @@
 /**
 * @see http://artsiom.mezin.eu/technofront/
 */
+
+
+
+
 function onSubmit (form) {
 	let data = {
 		user: form.elements['user'].value,
@@ -11,16 +15,15 @@ function onSubmit (form) {
 	let result = request('/users', data);
 
 	if (result === '100') {
-		form.hidden = true;
-		window.helloWorld.innerHTML = hello(data.user); 
+		window.helloWorld.innerHTML = hello(data.user,data.email); 
 	}
 
-	kolvo(111);
 	console.log(data, result);
 }
 
-function hello (text) {
-	return 'Привет, ' + text + '!' + ' Вы были ' + kolvo(151);
+function hello (text, email) {
+
+	return 'Привет, ' + text + '!' + ' Вы были ' + kolvo(countEmails(email));
 }
 
 if (typeof exports === 'object') {
@@ -35,7 +38,7 @@ function kolvo(value){
 	var variables2 = [
 		1,5,6,7,8,9,0,
 	];
-	if ((value % 100 in variables) || (value % 10 in variables2))  {
+	if ((variables.indexOf(value % 100)!=-1) || (variables2.indexOf(value % 10)!=-1))  {
 		return value + ' раз';
 	}
 	else {
